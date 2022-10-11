@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TH2.HotelPage"
+             xmlns:converter="clr-namespace:TH2.Converter"
+             >
+    <ContentPage.Resources>
+        <converter:StatusConverter x:Key="statusCVT"></converter:StatusConverter>
+    </ContentPage.Resources>
+    <NavigationPage.TitleView>
+        <Label Text="Hotels" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <RefreshView x:Name="refreshAct" Refreshing="refreshAct_Refreshing">
+            <ScrollView>
+                <StackLayout Padding="12">
+                    <SearchBar Placeholder="Searching hotel..." TextChanged="SearchBar_TextChanged"/>
+
+                    <ListView x:Name="LstHotel"
+                              RowHeight="100">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Text="Delete"
+                                                  x:Name="cmdDeleteItem"
+                                                  Clicked="cmdDeleteItem_Clicked"
+                                                  CommandParameter="{Binding HotelID}">
+                                        </MenuItem>
+                                        <MenuItem Text="Change Status"
+                                                  x:Name="cmdChangeStatus"
+                                                  Clicked="cmdChangeStatus_Clicked"
+                                                  CommandParameter="{Binding HotelID}">
+                                        </MenuItem>
+                                    </ViewCell.ContextActions>
+                                    <Grid Margin="0, 10, 0, 10"
+                                          Padding="4"
+                                          BackgroundColor="Gray">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Image}"
+                                               Grid.Column="0"
+                                               Grid.Row="0"
+                                               Grid.RowSpan="2"></Image>
+                                        <Label Text="{Binding HotelName }"
+                                               Grid.Column="1"
+                                               Grid.Row="0" />
+                                        <Label Text="{Binding IsBook,Converter={StaticResource statusCVT} }"
+                                               Grid.Column="1"
+                                               Grid.Row="1" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Button Text="REMOVE LAST"
+                            TextColor="Red"
+                            BorderRadius="50"
+                            x:Name="cmdRemoveLast"
+                            Clicked="cmdRemoveLast_Clicked"
+                            HorizontalOptions="Center" />
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+        
+    </ContentPage.Content>
+</ContentPage>

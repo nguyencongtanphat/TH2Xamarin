@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TH2.LocationsPage">
+    <NavigationPage.TitleView>
+        <Label Text="Booking" TextColor="White" FontSize="Large"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="Logo.png" />
+            <ListView x:Name="LstLocations" SeparatorColor="Gray" RowHeight="100" ItemTapped="LstLocations_ItemTapped" 
+                      ItemSelected="LstLocations_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image  Source="{Binding Image}"
+                                        Grid.Column="0"
+                                        Grid.Row="0"></Image>
+                                <Label  Text="{Binding LocationName}"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        TextColor="Black"
+                                        VerticalOptions="Center"
+                                        />
+                            </Grid>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
