@@ -4,7 +4,7 @@
              x:Class="TH2.AnimalsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="animal"></Label>
+            <Label x:Name="animal" Text="Pat dep chai"></Label>
             <!--<ListView x:Name="LstAnimal"
                       RowHeight="100"
                       ItemSelected="LstAnimal_ItemSelected">
